@@ -1,0 +1,102 @@
+document.querySelector("#login").addEventListener("click", function () {
+    showLoginForm();
+});
+
+document.querySelector(".popup .close-btn").addEventListener("click", function () {
+    closePopup();
+});
+
+function showLoginForm() {
+    // Show login form and hide registration form
+    document.querySelector(".login-form").style.display = "block";
+    document.querySelector(".registration-form").style.display = "none";
+
+    // Update heading
+    document.querySelector(".popup .form h2").textContent = "Login";
+
+    // Show popup with fade-in effect
+    document.querySelector(".popup").classList.add("active");
+}
+
+function showRegistrationForm() {
+    // Show registration form and hide login form
+    document.querySelector(".login-form").style.display = "none";
+    document.querySelector(".registration-form").style.display = "block";
+
+    // Update the message if needed
+    document.querySelector(".popup .form h2").textContent = "Register";
+}
+
+function closePopup() {
+    // Close the popup
+    document.querySelector(".popup").classList.remove("active");
+
+    // Reset form elements
+    document.querySelector(".login-form").reset();
+    document.querySelector(".registration-form").reset();
+}
+
+function signIn() {
+    // Get user input values
+    const email = document.querySelector("#email").value;
+    const password = document.querySelector("#password").value;
+
+    // Simple email validation
+    if (!isValidEmail(email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+
+    // Simple password validation
+    if (password.trim() === "") {
+        alert("Please enter a password.");
+        return;
+    }
+
+    // Implement your sign-in logic here (replace the following with actual logic)
+    alert(`Sign in successful!\nEmail: ${email}\nPassword: ${password}`);
+    closePopup();
+}
+
+function register() {
+    // Get user input values for registration
+    const firstName = document.querySelector("#firstName").value;
+    const lastName = document.querySelector("#lastName").value;
+    const regEmail = document.querySelector("#regEmail").value;
+    const regPassword = document.querySelector("#regPassword").value;
+
+    // Simple name validation
+    if (firstName.trim() === ""  ){
+        alert("Please enter first name.");
+        return;
+    }
+    if ( lastName.trim() === "") {
+        alert("Please enter last name.");
+        
+    return;
+    }
+
+   
+
+    // Simple email validation
+    if (!isValidEmail(regEmail)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+
+    // Simple password validation
+    if (regPassword.trim() === "") {
+        alert("Please enter a password.");
+        return;
+    }
+
+    // Implement your registration logic here (replace the following with actual logic)
+    alert("Registration successful!");
+    showLoginForm();
+}
+
+function isValidEmail(email) {
+    // Basic email validation using a regular expression
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
